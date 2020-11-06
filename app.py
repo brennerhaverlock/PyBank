@@ -1,42 +1,59 @@
 class BankAccount:
-    def __init__(self, name, balance=0.00, routing=0000000, account=000000):
-        self.name = name
-        self._balance = balance
-        self._routing = routing
-        self._account = account
+    def __init__(self, full_name, account_number, routing_number, balance):
+        self.full_name = full_name
+        self.account_number = account_number
+        self.routing_number = routing_number
+        self.balance = balance
 
     def deposit(self, amount):
-        """make a deposit"""
-        self._balance += amount
+        self.balance += amount
+        print("\n Amount Deposited:", amount)
 
+        # Function to withdraw the amount
     def withdraw(self, amount):
-        """make a withdraw"""
-        if amount > self._balance:
-            raise ValueError("insufficient funds")
-        self._balance -= amount
+        amount = float((input("Enter a amount")))
+        if self.balance >= amount:
+            self.balance -= amount
+            print("\n You Withdrew", amount)
+        else:
+            print("\n Insufficient funds.")
+            self.balance - 10
+        # Function to display the amount
 
-    def addInterest(self, amount):
+    def display_balance(self):
+        print("\n You have ", self.balance)
+
+    def add_interest(self, balance):
         interest = self.balance * 0.00083
 
-    @property
-    def balance(self):
-        """check the balance"""
-        return self._balance
-
-    def __repr__(self):
-        return '{0.__class__.__name__}(name={0.name}, balance={0.balance})'.format(self)
-
-    def __str__(self):
-        return 'Bank account of {}, current balance: {}'.format(self.name, self.balance)
+    def print_receipt(self):
+        print(self.full_name)
+        print("Account Number: " + str(self.account_number))
+        print("routing number: " + str(self.routing_number))
+        print("balance:" + str(self.balance))
 
 
 # creating an object of class
-customer1 = BankAccount('Alex')
-print(repr(customer1))
+customer1 = BankAccount('Alex', 000000, 000000, 10)
 customer1.deposit(100)
-customer1.withdraw(30)
-print(customer1)
-customer2 = BankAccount('Sam', 200)
-print(customer2.balance)
+customer1.withdraw(50)
+customer1.display_balance
+# customer1.add_interest
+customer1.print_receipt()
+
+customer2 = BankAccount('Bob', 3121212, 21212121, 10000)
+customer2.deposit(100)
+customer2.withdraw(50)
+customer2.display_balance
+# customer1.add_interest
+customer2.print_receipt()
+
+customer2 = BankAccount('John', 312221212, 212121321, 1000)
+customer2.deposit(222)
+customer2.withdraw(50)
+customer2.display_balance
+# customer1.add_interest
+customer2.print_receipt()
+
 # Calling functions with that class object
 # Calling functions with that class object
