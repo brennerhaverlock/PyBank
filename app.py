@@ -1,7 +1,9 @@
 class BankAccount:
-    def __init__(self, name, balance=0.00):
+    def __init__(self, name, balance=0.00, routing=0000000, account=000000):
         self.name = name
         self._balance = balance
+        self._routing = routing
+        self._account = account
 
     def deposit(self, amount):
         """make a deposit"""
@@ -12,6 +14,9 @@ class BankAccount:
         if amount > self._balance:
             raise ValueError("insufficient funds")
         self._balance -= amount
+
+    def addInterest(self, amount):
+        interest = self.balance * 0.00083
 
     @property
     def balance(self):
